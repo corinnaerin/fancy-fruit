@@ -1,0 +1,42 @@
+.error {
+  background-color: rgba(212, 5, 0, 0.7);
+}
+
+.info {
+  background-color: rgba(0, 188, 212, 0.7);
+}
+
+.warning {
+  background-color: rgba(255, 143, 0, 0.7);
+}
+
+.message {
+  color: white;
+  font-size: 1em;
+  padding: 1em;
+  text-align: center;
+  transition: all ease-in 300ms;
+  min-height: 20px;
+  line-height: 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
+}
+
+.icon {
+  margin-right: 5px;
+}
+
+.hide {
+  min-height: 0;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.dismiss {
+  position: absolute;
+  right: 15px;
+  cursor: pointer;
+}

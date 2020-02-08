@@ -1,0 +1,8 @@
+{
+  "module": "commonjs",
+  "mode": "modules",
+  "readme": "./README.md",
+  "excludeExternals": true,
+  "out": "build/public/docs",
+  "name": "TicTacToe Dungeon"
+}

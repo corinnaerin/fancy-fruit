@@ -1,0 +1,35 @@
+{
+  "extends": ["eslint-config-google", "plugin:react/recommended", "plugin:@typescript-eslint/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions":  {
+    "ecmaVersion":  2018,
+    "sourceType":  "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "comma-dangle": ["error", "never"],
+    "max-len": ["warn", 160],
+    "object-curly-spacing": ["error", "always"],
+    "require-jsdoc": "off",
+    "valid-jsdoc": "off", // this rule is deprecated: https://eslint.org/blog/2018/11/jsdoc-end-of-life
+    "linebreak-style": "off",
+    "generator-star-spacing": ["error", "both"],
+    "padded-blocks": "off",
+    "array-bracket-spacing": ["error", "always", {
+      "singleValue": true,
+      "objectsInArrays": false,
+      "arraysInArrays": false
+    }],
+    "semi": "off",
+    "@typescript-eslint/semi": ["error"],
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "react/prop-types": "off" // we are using typescript, this is redundant
+  }
+}
