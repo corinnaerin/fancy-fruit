@@ -20,6 +20,7 @@ const SalesTableRow: FunctionComponent<Props> = ({ sale }): ReactElement => {
       <td>{sale.strawberries}</td>
       <td>{sale.apples}</td>
       <td>{sale.oranges}</td>
+      <td>{sale.bananas + sale.strawberries + sale.apples + sale.oranges}</td>
     </tr>
   );
 };

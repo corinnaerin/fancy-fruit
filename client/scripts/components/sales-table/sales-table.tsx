@@ -25,6 +25,7 @@ const SalesTable: FunctionComponent<Props> = ({ sales }): ReactElement => {
           <th>Strawberries</th>
           <th>Apples</th>
           <th>Oranges</th>
+          <th>Total Sales</th>
         </tr>
       </thead>
       <tbody>

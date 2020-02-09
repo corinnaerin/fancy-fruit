@@ -1,0 +1,4 @@
+.salesResults {
+  display: flex;
+  flex-direction: row;
+}

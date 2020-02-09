@@ -6,7 +6,7 @@
 .salesTable th {
   padding: 1em;
   background-color: #3F8599;
-  color: #eee;
+  color: #EEE;
   font-weight: 400;
 }
 
@@ -20,12 +20,12 @@
   background-color: rgba(145, 191, 204, 0.25);
 }
 
-.salesTable tr:nth-child(odd):hover {
-  background-color: rgba(145, 191, 204, 0.35);
-}
-
 .salesTable tr:nth-child(even) {
   background-color: rgba(207, 255, 239, 0.25);
+}
+
+.salesTable tr:nth-child(odd):hover {
+  background-color: rgba(145, 191, 204, 0.35);
 }
 
 .salesTable tr:nth-child(even):hover {

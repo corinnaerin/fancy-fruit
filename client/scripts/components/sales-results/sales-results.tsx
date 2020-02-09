@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import If from '../if/if';
 import ApplicationState from '../../model/application-state';
 import SalesTable from '../sales-table/sales-table';
+import SalesChart from '../sales-chart/sales-chart';
+import styles from './sales-results.css';
 
 interface Props {
   /**
@@ -19,7 +21,14 @@ interface Props {
  */
 const SalesResults: FunctionComponent<Props> = ({ hasResults }): ReactElement => {
   return (
-    <If condition={hasResults} render={() => <SalesTable />}/>
+    <If condition={hasResults} render={() => {
+      return (
+        <section className={styles.salesResults}>
+          <SalesTable />
+          <SalesChart />
+        </section>
+      );
+    }} />
   );
 };
 
