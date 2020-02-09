@@ -5,6 +5,7 @@ import { Dispatch } from 'redux';
 import { ComponentCSSClasses, default as ComponentUtil } from '../component-util';
 import Icon from '../icon/icon';
 import styles from './application-message.css';
+import ApplicationState from '../../model/application-state';
 
 interface StateProps {
   /**
@@ -57,7 +58,7 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => {
   };
 };
 
-const mapStateToProps = ({ message }: StateProps): StateProps => {
+const mapStateToProps = ({ message }: ApplicationState): StateProps => {
   return {
     message: message || {}
   };

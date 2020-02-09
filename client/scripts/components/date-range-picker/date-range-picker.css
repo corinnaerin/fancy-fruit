@@ -1,0 +1,13 @@
+.dateRangeContainer {
+  border: none;
+}
+
+.dateRangeContainer label {
+  display: inline-block;
+  width: 250px;
+}
+
+.inputLabel {
+  font-weight: 400;
+  padding-bottom: 0.2em;
+}

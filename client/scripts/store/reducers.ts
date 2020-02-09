@@ -1,10 +1,12 @@
 import ApplicationState from '../model/application-state';
 import { AnyAction, Reducer, ReducersMapObject } from 'redux';
+import moment from 'moment';
 
 export const INITIAL_STATE: ApplicationState = {
   isFetching: false,
   view: 'Search',
-  sales: []
+  sales: [],
+  searchQuery: {}
 };
 
 type SubReducer = (
@@ -59,6 +61,26 @@ const setSales: SubReducer = (state, action): ApplicationState => {
   };
 };
 
+const setStartDate: SubReducer = (state, action): ApplicationState => {
+  return {
+    ...state,
+    searchQuery: {
+      ...state.searchQuery,
+      startDate: action.startDate ? moment(action.startDate) : undefined
+    }
+  };
+};
+
+const setEndDate: SubReducer = (state, action): ApplicationState => {
+  return {
+    ...state,
+    searchQuery: {
+      ...state.searchQuery,
+      endDate: action.endDate ? moment(action.endDate) : undefined
+    }
+  };
+};
+
 const reducers: ReducersMapObject = {
   HEALTHCHECK_REQUEST: requestStart,
   HEALTHCHECK_SUCCESS: requestSuccess,
@@ -67,7 +89,9 @@ const reducers: ReducersMapObject = {
   SALES_SUCCESS: setSales,
   SALES_FAILURE: requestFailure,
   CLEAR_MESSAGE: clearMessage,
-  SET_MESSAGE: setMessage
+  SET_MESSAGE: setMessage,
+  SET_START_DATE: setStartDate,
+  SET_END_DATE: setEndDate
 };
 
 export const universalReducer: Reducer<ApplicationState> = (state = INITIAL_STATE, action) => {

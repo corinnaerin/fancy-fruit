@@ -13,3 +13,9 @@ body {
   align-content: center;
   flex-wrap: wrap;
 }
+
+input[type="text"] {
+  padding: 0.3em;
+  border: 1px solid #3F8599;
+  border-radius: 4px;
+}

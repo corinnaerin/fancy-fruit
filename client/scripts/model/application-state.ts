@@ -1,5 +1,6 @@
 import { Message } from './message';
 import SalesRecord from '../../../common/sales-record';
+import DateRange from '../../../common/date-range';
 
 export type View = 'Search' | 'ReportSale';
 
@@ -26,4 +27,9 @@ export default interface ApplicationState {
    * The current search results
    */
   sales: SalesRecord[];
+
+  /**
+   * Search query for sales records
+   */
+  searchQuery: Partial<DateRange>;
 }

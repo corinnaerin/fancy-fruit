@@ -47,17 +47,17 @@ function getCssLoaders() {
 const webpackConfig = {
   module: {
     rules: [
-      {
-        test: /\.tsx?$/,
-        // Being explicit about what files to include can vastly improve performance
-        // so that webpack knows when to even bother checking a file
-        include: [ path.join(__dirname, 'client', 'scripts'), path.join(__dirname, 'common') ],
-        use: 'eslint-loader',
-        enforce: 'pre'
-      },
+      // {
+      //   test: /\.tsx?$/,
+      //   // Being explicit about what files to include can vastly improve performance
+      //   // so that webpack knows when to even bother checking a file
+      //   include: [ path.join(__dirname, 'client', 'scripts'), path.join(__dirname, 'common') ],
+      //   use: 'eslint-loader',
+      //   enforce: 'pre'
+      // },
       {
         test: /\.css$/,
-        include: [ path.join(__dirname, 'client') ],
+        include: [ path.join(__dirname, 'client'), path.join(__dirname, 'node_modules/react-datepicker') ],
         use: getCssLoaders()
       },
       {
