@@ -4,8 +4,45 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const merge = require('webpack-merge');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
+
+function getCssLoaders() {
+  const loaders = [
+    // Style-loader is required for css hot-reloading, but we need the performance boost
+    // of extracting to a single CSS file in production
+    isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+    {
+      loader: 'css-loader',
+      options: {
+        modules: {
+          localIdentName: '[name]__[local]___[hash:base64:5]'
+        },
+        importLoaders: 1,
+        sourceMap: isDev
+      }
+    }
+  ];
+
+  if (!process.env.WATCH) {
+    // PostCSS loader is expensive, and we don't need to run any of this on incremental builds
+    loaders.push({
+      loader: 'postcss-loader',
+      options: {
+        ident: 'postcss',
+        plugins: [
+          require('stylelint'),
+          // So useful so I don't have to worry about browser-compatibility as much!
+          require('autoprefixer'),
+          require('cssnano')
+        ]
+      }
+    });
+  }
+
+  return loaders;
+}
 
 const webpackConfig = {
   module: {
@@ -21,33 +58,7 @@ const webpackConfig = {
       {
         test: /\.css$/,
         include: [ path.join(__dirname, 'client') ],
-        use: [
-          // Style-loader is required for css hot-reloading, but we need the performance boost
-          // of extracting to a single CSS file in production
-          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                localIdentName: '[name]__[local]___[hash:base64:5]'
-              },
-              importLoaders: 1,
-              sourceMap: isDev
-            }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              ident: 'postcss',
-              plugins: [
-                require('stylelint'),
-                // So useful so I don't have to worry about browser-compatibility as much!
-                require('autoprefixer'),
-                require('cssnano')
-              ]
-            }
-          }
-        ]
+        use: getCssLoaders()
       },
       {
         test: /\.tsx?$/,
@@ -55,6 +66,7 @@ const webpackConfig = {
         use: {
           loader: 'ts-loader',
           options: {
+            happyPackMode: true,
             compilerOptions: {
               sourceMap: isDev
             }
@@ -94,7 +106,7 @@ const webpackConfig = {
     extensions: [ '.js', '.jsx', '.ts', '.tsx', '.css' ]
   },
 
-  devtool: isDev && 'inline-source-map',
+  devtool: isDev && 'cheap-module-eval-source-map',
 
   plugins: [
     // Yay auto-injecting generated assets into the HTML!
@@ -102,7 +114,8 @@ const webpackConfig = {
       title: 'Fancy Fruit',
       inject: 'body',
       template: path.join(__dirname, 'client', 'index.ejs')
-    })
+    }),
+    new ForkTsCheckerWebpackPlugin({ checkSyntacticErrors: true })
   ],
 
   optimization: {
