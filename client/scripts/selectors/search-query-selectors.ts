@@ -23,3 +23,10 @@ export const selectEndDateNative = createSelector(
     selectEndDate,
     (endDate) => endDate && endDate.toDate()
 );
+
+export const selectIsValidSearchQuery = createSelector(
+    selectSearchQuery,
+    (searchQuery) => !!searchQuery.startDate &&
+        !!searchQuery.endDate &&
+        searchQuery.startDate.isSameOrBefore(searchQuery.endDate)
+);

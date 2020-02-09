@@ -8,14 +8,22 @@ body {
 .bodyContent {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  justify-content: center;
-  align-content: center;
-  flex-wrap: wrap;
 }
 
-input[type="text"] {
+input[type="text"],
+button {
   padding: 0.3em;
   border: 1px solid #3F8599;
   border-radius: 4px;
+}
+
+button {
+  display: inline-flex;
+  line-height: 24px;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+button:disabled {
+  cursor: default;
 }

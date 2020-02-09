@@ -1,0 +1,12 @@
+.searchHeader {
+  background-color: rgba(145, 191, 204, 0.25);
+  padding: 1em;
+  margin-bottom: 1em;
+  border-radius: 2px;
+}
+
+.searchHeader h1 {
+  font-weight: 400;
+  text-align: center;
+  margin-top: 0;
+}
