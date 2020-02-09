@@ -3,6 +3,7 @@ import * as path from 'path';
 import * as log from 'fancy-log';
 import errorHandler from './middleware/error-handler';
 import Healthcheck from './routes/healthcheck';
+import Sales from './routes/sales';
 
 /**
  * My server!
@@ -49,6 +50,7 @@ class Server {
     router.use(express.json());
 
     router.get('/healthcheck', Healthcheck.get);
+    router.get('/sales', Sales.get);
 
     this.app.use(errorHandler);
 
