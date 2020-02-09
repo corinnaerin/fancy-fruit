@@ -5,17 +5,13 @@ import Fruit from '../../common/fruit';
 
 const data: Map<string, SalesRecord> = new Map();
 
-function getDateString(date: Moment) {
-  return date.format('MM-DD-YYYY');
-}
-
 function getRandomSalesNum() {
   return Math.floor(Math.random() * 1000);
 }
 
 function generateRandomRecord(date: Moment): SalesRecord {
   return {
-    date,
+    date: date.format(),
     [Fruit.APPLES]: getRandomSalesNum(),
     [Fruit.BANANAS]: getRandomSalesNum(),
     [Fruit.STRAWBERRIES]: getRandomSalesNum(),
@@ -24,7 +20,7 @@ function generateRandomRecord(date: Moment): SalesRecord {
 }
 
 export function getRecord(date: Moment) {
-  const dateString = getDateString(date);
+  const dateString = date.format();
   if (data.has(dateString)) {
     return data.get(dateString);
   } else {
