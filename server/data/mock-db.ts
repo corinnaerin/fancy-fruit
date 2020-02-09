@@ -5,17 +5,17 @@ import Fruit from '../../common/fruit';
 
 const data: Map<string, SalesRecord> = new Map();
 
-function getRandomSalesNum() {
-  return Math.floor(Math.random() * 1000);
+function getRandomSalesNum(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function generateRandomRecord(date: Moment): SalesRecord {
   return {
     date: date.format(),
-    [Fruit.APPLES]: getRandomSalesNum(),
-    [Fruit.BANANAS]: getRandomSalesNum(),
-    [Fruit.STRAWBERRIES]: getRandomSalesNum(),
-    [Fruit.ORANGES]: getRandomSalesNum()
+    [Fruit.APPLES]: getRandomSalesNum(50, 100),
+    [Fruit.ORANGES]: getRandomSalesNum(75, 150),
+    [Fruit.BANANAS]: getRandomSalesNum(125, 300),
+    [Fruit.STRAWBERRIES]: getRandomSalesNum(250, 500)
   };
 }
 

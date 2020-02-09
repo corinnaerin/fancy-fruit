@@ -22,10 +22,10 @@ const SalesTable: FunctionComponent<Props> = ({ sales }): ReactElement => {
       <thead>
         <tr>
           <th>Date</th>
-          <th>Bananas</th>
           <th>Strawberries</th>
-          <th>Apples</th>
+          <th>Bananas</th>
           <th>Oranges</th>
+          <th>Apples</th>
           <th>Total Sales</th>
         </tr>
       </thead>

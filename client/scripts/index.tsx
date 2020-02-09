@@ -18,5 +18,5 @@ healthcheckSaga.trigger(store);
 
 salesSaga.trigger(store, {
   startDate: moment(),
-  endDate: moment().add(30, 'day')
+  endDate: moment().add(15, 'day')
 });

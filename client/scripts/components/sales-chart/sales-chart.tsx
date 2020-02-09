@@ -17,6 +17,10 @@ interface Props {
  * @return {Element}
  */
 const SalesChart: FunctionComponent<Props> = ({ sales }): ReactElement => {
+  // NOTE: I'm using this charting library recharts because manually integrating d3 & React is far from
+  // trivial, and certainly out of scope of this project. Unfortunately it doesn't look like this library
+  // handles accessibility (the generated SVG is missing title attributes, for example). For a real enterprise application,
+  // I would pick a different library or build something bespoke
   return (
     <BarChart width={730} height={400} data={sales}>
       <CartesianGrid strokeDasharray="3 3" />
@@ -24,10 +28,11 @@ const SalesChart: FunctionComponent<Props> = ({ sales }): ReactElement => {
       <YAxis />
       <Tooltip />
       <Legend />
-      <Bar dataKey={Fruit.ORANGES} fill="#91BFCC" stackId="a" />
-      <Bar dataKey={Fruit.BANANAS} fill="#3F8599" stackId="a" />
-      <Bar dataKey={Fruit.STRAWBERRIES} fill="#FF958F" stackId="a" />
-      <Bar dataKey={Fruit.APPLES} fill="#CC91A4" stackId="a" />
+      {/* Accessible color palette from https://davidmathlogic.com/colorblind */}
+      <Bar dataKey={Fruit.STRAWBERRIES} fill="#882255" stackId="a" />
+      <Bar dataKey={Fruit.BANANAS} fill="#88CCEE" stackId="a" />
+      <Bar dataKey={Fruit.ORANGES} fill="#CC6677" stackId="a" />
+      <Bar dataKey={Fruit.APPLES} fill="#44AA99" stackId="a" />
     </BarChart>
   );
 };
