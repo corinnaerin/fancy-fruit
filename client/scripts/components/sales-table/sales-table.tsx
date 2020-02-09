@@ -2,12 +2,13 @@ import * as React from 'react';
 import { FunctionComponent, ReactElement } from 'react';
 import { connect } from 'react-redux';
 import ApplicationState from '../../model/application-state';
-import SalesRecord from '../../../../common/sales-record';
 import SalesTableRow from '../sales-table-row/sales-table-row';
 import styles from './sales-table.css';
+import { getFormattedSales } from '../../selectors/sales-selectors';
+import FormattedSalesRecord from '../../model/formatted-sales-record';
 
 interface Props {
-  sales: SalesRecord[];
+  sales: FormattedSalesRecord[];
 }
 
 /**
@@ -39,9 +40,9 @@ const SalesTable: FunctionComponent<Props> = ({ sales }): ReactElement => {
   );
 };
 
-const mapStateToProps = ({ sales }: ApplicationState): Props => {
+const mapStateToProps = (state: ApplicationState): Props => {
   return {
-    sales
+    sales: getFormattedSales(state)
   };
 };
 

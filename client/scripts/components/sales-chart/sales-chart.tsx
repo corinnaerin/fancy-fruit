@@ -2,13 +2,13 @@ import * as React from 'react';
 import { FunctionComponent, ReactElement } from 'react';
 import { connect } from 'react-redux';
 import ApplicationState from '../../model/application-state';
-import SalesRecord from '../../../../common/sales-record';
 import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts';
 import Fruit from '../../../../common/fruit';
-import moment from 'moment';
+import { getFormattedSales } from '../../selectors/sales-selectors';
+import FormattedSalesRecord from '../../model/formatted-sales-record';
 
 interface Props {
-  sales: SalesRecord[];
+  sales: FormattedSalesRecord[];
 }
 
 /**
@@ -17,17 +17,10 @@ interface Props {
  * @return {Element}
  */
 const SalesChart: FunctionComponent<Props> = ({ sales }): ReactElement => {
-  const formattedSales = sales.map((sale) => {
-    return {
-      ...sale,
-      date: moment(sale.date).format('MM/DD'),
-      total: sale.apples + sale.bananas + sale.strawberries + sale.oranges
-    };
-  });
   return (
-    <BarChart width={730} height={400} data={formattedSales}>
+    <BarChart width={730} height={400} data={sales}>
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="date" />
+      <XAxis dataKey="shortDate" />
       <YAxis />
       <Tooltip />
       <Legend />
@@ -39,9 +32,9 @@ const SalesChart: FunctionComponent<Props> = ({ sales }): ReactElement => {
   );
 };
 
-const mapStateToProps = ({ sales }: ApplicationState): Props => {
+const mapStateToProps = (state: ApplicationState): Props => {
   return {
-    sales
+    sales: getFormattedSales(state)
   };
 };
 

@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { FunctionComponent, ReactElement } from 'react';
-import SalesRecord from '../../../../common/sales-record';
-import moment from 'moment';
+import FormattedSalesRecord from '../../model/formatted-sales-record';
 
 interface Props {
-  sale: SalesRecord;
+  sale: FormattedSalesRecord;
 }
 
 /**
@@ -15,7 +14,7 @@ interface Props {
 const SalesTableRow: FunctionComponent<Props> = ({ sale }): ReactElement => {
   return (
     <tr>
-      <td>{moment(sale.date).format('MM/DD/YYYY')}</td>
+      <td>{sale.longDate}</td>
       <td>{sale.bananas}</td>
       <td>{sale.strawberries}</td>
       <td>{sale.apples}</td>

@@ -6,6 +6,7 @@ import ApplicationState from '../../model/application-state';
 import SalesTable from '../sales-table/sales-table';
 import SalesChart from '../sales-chart/sales-chart';
 import styles from './sales-results.css';
+import { hasResults } from '../../selectors/sales-selectors';
 
 interface Props {
   /**
@@ -32,9 +33,9 @@ const SalesResults: FunctionComponent<Props> = ({ hasResults }): ReactElement =>
   );
 };
 
-const mapStateToProps = ({ sales }: ApplicationState): Props => {
+const mapStateToProps = (state: ApplicationState): Props => {
   return {
-    hasResults: sales && sales.length > 0
+    hasResults: hasResults(state)
   };
 };
 
