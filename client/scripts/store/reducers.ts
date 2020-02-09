@@ -6,7 +6,10 @@ export const INITIAL_STATE: ApplicationState = {
   isFetching: false,
   view: 'Search',
   sales: [],
-  searchQuery: {}
+  searchQuery: {
+    startDate: moment().subtract(8, 'day'),
+    endDate: moment().subtract(1, 'day')
+  }
 };
 
 type SubReducer = (

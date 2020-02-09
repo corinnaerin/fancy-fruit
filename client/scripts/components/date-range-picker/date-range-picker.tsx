@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import ApplicationState from '../../model/application-state';
 import { selectEndDateNative, selectStartDateNative } from '../../selectors/search-query-selectors';
 import styles from './date-range-picker.css';
+import moment from 'moment';
 
 interface StateProps {
   startDate?: Date;
@@ -31,6 +32,8 @@ const POPPER_MODIFIERS: Modifiers = {
  * @return {ReactElement}
  */
 const DateRangePicker: FunctionComponent<Props> = ({ setStartDate, setEndDate, startDate, endDate }) => {
+  // Don't allow searching today or in the future (we wouldn't have full stats for the current day yet)
+  const yesterday = moment().subtract(1, 'day').toDate();
   return (
     <fieldset className={styles.dateRangeContainer} aria-label="Search Date Range">
       <label>
@@ -40,7 +43,7 @@ const DateRangePicker: FunctionComponent<Props> = ({ setStartDate, setEndDate, s
           selectsStart
           popperPlacement="bottom"
           popperModifiers={POPPER_MODIFIERS}
-          maxDate={endDate}
+          maxDate={endDate || yesterday}
           startDate={startDate}
           endDate={endDate}
           onChange={setStartDate} />
@@ -55,7 +58,8 @@ const DateRangePicker: FunctionComponent<Props> = ({ setStartDate, setEndDate, s
           startDate={startDate}
           endDate={endDate}
           onChange={setEndDate}
-          minDate={startDate} />
+          minDate={startDate}
+          maxDate={yesterday} />
       </label>
     </fieldset>
   );
