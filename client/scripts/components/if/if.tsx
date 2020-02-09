@@ -14,6 +14,11 @@ interface Props {
    * which can additionally cause unexpected errors if required props are undefined, etc.
    */
   render: () => ReactElement;
+
+  /**
+   * An optional function to render in the else condition
+   */
+  elseRender?: () => ReactElement;
 }
 
 /**
@@ -22,12 +27,14 @@ interface Props {
  * @param {Props} props
  * @return {ReactElement}
  */
-const RenderIf: React.FunctionComponent<Props> = ({ condition, render }) => {
+const If: React.FunctionComponent<Props> = ({ condition, render, elseRender }) => {
   if (condition) {
     return render();
+  } else if (elseRender) {
+    return elseRender();
   }
 
   return null;
 };
 
-export default RenderIf;
+export default If;

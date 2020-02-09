@@ -1,0 +1,33 @@
+.salesTable {
+  border-collapse: collapse;
+  border: 1px solid #3F8599;
+}
+
+.salesTable th {
+  padding: 1em;
+  background-color: #3F8599;
+  color: #eee;
+  font-weight: 400;
+}
+
+.salesTable td {
+  padding: 1em;
+  text-align: center;
+  border-bottom: 1px solid #3F8599;
+}
+
+.salesTable tr:nth-child(odd) {
+  background-color: rgba(145, 191, 204, 0.25);
+}
+
+.salesTable tr:nth-child(odd):hover {
+  background-color: rgba(145, 191, 204, 0.35);
+}
+
+.salesTable tr:nth-child(even) {
+  background-color: rgba(207, 255, 239, 0.25);
+}
+
+.salesTable tr:nth-child(even):hover {
+  background-color: rgba(207, 255, 239, 0.35);
+}
