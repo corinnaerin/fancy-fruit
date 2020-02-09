@@ -1,5 +1,7 @@
-import Fruit from './fruit';
+import FruitSales from './fruit-sales';
 
-export default interface SalesRecord extends Record<Fruit, number> {
+export default interface SalesRecord {
   date: string;
+  totalSales: number;
+  salesByFruit: FruitSales[];
 }

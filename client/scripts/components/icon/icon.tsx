@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FunctionComponent } from 'react';
 import ComponentUtil from '../component-util';
 
 interface Props extends React.HTMLAttributes<HTMLElement> {
@@ -22,7 +22,7 @@ interface Props extends React.HTMLAttributes<HTMLElement> {
  * @param {Props} props
  * @return {ReactElement}
  */
-const Icon: React.FunctionComponent<Props> = ({ iconName, className = '', ...props }) => {
+const Icon: FunctionComponent<Props> = ({ iconName, className = '', ...props }) => {
   return <i {...props} className={ComponentUtil.getCSSClassString(iconName, className, 'material-icons')}>{iconName}</i>;
 };
 

@@ -1,11 +1,10 @@
-import * as React from 'react';
+import React, { FunctionComponent, MouseEventHandler, ReactElement } from 'react';
 import { connect } from 'react-redux';
 import { Message } from '../../model/message';
 import { Dispatch } from 'redux';
 import { ComponentCSSClasses, default as ComponentUtil } from '../component-util';
 import Icon from '../icon/icon';
 import styles from './application-message.css';
-import { ReactElement, MouseEventHandler, FunctionComponent } from 'react';
 
 interface StateProps {
   /**

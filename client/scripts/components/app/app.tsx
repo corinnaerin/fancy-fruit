@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FunctionComponent } from 'react';
 import ApplicationMessage from '../application-message/application-message';
 import Search from '../search/search';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -9,7 +9,7 @@ import RecordSale from '../record-sale/record-sale';
  * The root React component
  * @return {ReactElement}
  */
-const App: React.FunctionComponent = () => {
+const App: FunctionComponent = () => {
   return (
     <React.Fragment>
       <ApplicationMessage />

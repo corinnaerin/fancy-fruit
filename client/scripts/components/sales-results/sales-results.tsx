@@ -1,12 +1,11 @@
-import * as React from 'react';
-import { FunctionComponent, ReactElement } from 'react';
+import React, { FunctionComponent, ReactElement } from 'react';
 import { connect } from 'react-redux';
 import If from '../if/if';
 import ApplicationState from '../../model/application-state';
 import SalesTable from '../sales-table/sales-table';
 import SalesChart from '../sales-chart/sales-chart';
 import styles from './sales-results.css';
-import { hasResults } from '../../selectors/sales-selectors';
+import { selectHasSalesResults } from '../../selectors/sales-selectors';
 
 interface Props {
   /**
@@ -18,7 +17,7 @@ interface Props {
 /**
  * A component to display an application-wide message
  * @param {Props} props
- * @return {Element}
+ * @return {ReactElement}
  */
 const SalesResults: FunctionComponent<Props> = ({ hasResults }): ReactElement => {
   return (
@@ -35,7 +34,7 @@ const SalesResults: FunctionComponent<Props> = ({ hasResults }): ReactElement =>
 
 const mapStateToProps = (state: ApplicationState): Props => {
   return {
-    hasResults: hasResults(state)
+    hasResults: selectHasSalesResults(state)
   };
 };
 

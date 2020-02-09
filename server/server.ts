@@ -1,5 +1,5 @@
-import express from 'express';
-import * as path from 'path';
+import express, { Application, Router, json, Request, Response } from 'express';
+import { resolve, join } from 'path';
 import * as log from 'fancy-log';
 import errorHandler from './middleware/error-handler';
 import Healthcheck from './routes/healthcheck';
@@ -9,7 +9,7 @@ import Sales from './routes/sales';
  * My server!
  */
 class Server {
-  public app: express.Application;
+  public app: Application;
 
   private port: number = process.env.PORT ? parseInt(process.env.PORT, 10) : 5000;
 
@@ -30,10 +30,10 @@ class Server {
     if (process.env.WATCH) {
       this.setupWebpackDevMiddleware();
     } else {
-      this.app.use(express.static(path.resolve(__dirname, '..', 'public')));
+      this.app.use(express.static(resolve(__dirname, '..', 'public')));
 
       this.app.get('/*', function(req, res) {
-        res.sendFile(path.join(__dirname, '../public/index.html'), (err) => {
+        res.sendFile(join(__dirname, '../public/index.html'), (err) => {
           if (err) {
             res.status(500).send(err);
           }
@@ -45,16 +45,16 @@ class Server {
   private routes(): void {
     // nothing I can do about express.js violating this rule :(
     // eslint-disable-next-line new-cap
-    const router = express.Router();
+    const router = Router();
 
-    router.use(express.json());
+    router.use(json());
 
     router.get('/healthcheck', Healthcheck.get);
     router.get('/sales', Sales.get);
 
     this.app.use(errorHandler);
 
-    this.app.use((request: express.Request, response: express.Response, next) => {
+    this.app.use((request: Request, response: Response, next) => {
       log.info(`${request.method} ${request.originalUrl}`);
       next();
     });

@@ -1,8 +1,8 @@
 enum Fruit {
-  BANANAS = 'bananas',
   STRAWBERRIES = 'strawberries',
-  APPLES = 'apples',
-  ORANGES = 'oranges'
+  BANANAS = 'bananas',
+  ORANGES = 'oranges',
+  APPLES = 'apples'
 }
 
 export default Fruit;

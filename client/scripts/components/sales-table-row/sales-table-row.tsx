@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { FunctionComponent, ReactElement } from 'react';
+import React, { FunctionComponent, ReactElement } from 'react';
 import FormattedSalesRecord from '../../model/formatted-sales-record';
 
 interface Props {
@@ -15,11 +14,10 @@ const SalesTableRow: FunctionComponent<Props> = ({ sale }): ReactElement => {
   return (
     <tr>
       <td>{sale.longDate}</td>
-      <td>{sale.strawberries}</td>
-      <td>{sale.bananas}</td>
-      <td>{sale.oranges}</td>
-      <td>{sale.apples}</td>
-      <td>{sale.total}</td>
+      {sale.salesByFruit.map(({ fruit, quantity }) => {
+        return <td key={fruit}>{quantity}</td>;
+      })}
+      <td>{sale.totalSales}</td>
     </tr>
   );
 };

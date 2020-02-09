@@ -1,6 +1,5 @@
 import ApplicationState from '../model/application-state';
-import * as Redux from 'redux';
-import { AnyAction } from 'redux';
+import { Store, AnyAction } from 'redux';
 import { call, put, takeEvery } from 'redux-saga/effects';
 
 export default class AsyncSaga<S, T> {
@@ -60,7 +59,7 @@ export default class AsyncSaga<S, T> {
     yield takeEvery(this.requestActionType, this.handle.bind(this));
   }
 
-  public trigger(store: Redux.Store<ApplicationState>, input: S): void {
+  public trigger(store: Store<ApplicationState>, input: S): void {
     store.dispatch(this.getRequestAction(input));
   }
 }
