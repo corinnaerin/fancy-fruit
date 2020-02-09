@@ -3,6 +3,8 @@ import { Provider } from 'react-redux';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import store from './store/store';
+import salesSaga from './saga/sales-saga';
+import moment from 'moment';
 import healthcheckSaga from './saga/healthcheck-saga';
 
 ReactDOM.render(
@@ -13,3 +15,8 @@ ReactDOM.render(
 );
 
 healthcheckSaga.trigger(store);
+
+salesSaga.trigger(store, {
+  startDate: moment(),
+  endDate: moment().add(30, 'day')
+});

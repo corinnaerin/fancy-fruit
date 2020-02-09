@@ -3,7 +3,8 @@ import { AnyAction, Reducer, ReducersMapObject } from 'redux';
 
 export const INITIAL_STATE: ApplicationState = {
   isFetching: false,
-  view: 'Search'
+  view: 'Search',
+  sales: []
 };
 
 type SubReducer = (
@@ -11,21 +12,21 @@ type SubReducer = (
     action: AnyAction
 ) => ApplicationState;
 
-const requestStart: SubReducer = (state) => {
+const requestStart: SubReducer = (state): ApplicationState => {
   return {
     ...state,
     isFetching: true
   };
 };
 
-const requestSuccess: SubReducer = (state) => {
+const requestSuccess: SubReducer = (state): ApplicationState => {
   return {
     ...state,
     isFetching: false
   };
 };
 
-const requestFailure: SubReducer = (state, action) => {
+const requestFailure: SubReducer = (state, action): ApplicationState => {
   return {
     ...state,
     isFetching: false,
@@ -36,17 +37,25 @@ const requestFailure: SubReducer = (state, action) => {
   };
 };
 
-const clearMessage: SubReducer = (state) => {
+const clearMessage: SubReducer = (state): ApplicationState => {
   return {
     ...state,
     message: undefined
   };
 };
 
-const setMessage: SubReducer = (state, action) => {
+const setMessage: SubReducer = (state, action): ApplicationState => {
   return {
     ...state,
     message: action.data
+  };
+};
+
+const setSales: SubReducer = (state, action): ApplicationState => {
+  return {
+    ...state,
+    isFetching: false,
+    sales: action.data
   };
 };
 
@@ -54,6 +63,9 @@ const reducers: ReducersMapObject = {
   HEALTHCHECK_REQUEST: requestStart,
   HEALTHCHECK_SUCCESS: requestSuccess,
   HEALTHCHECK_FAILURE: requestFailure,
+  SALES_REQUEST: requestStart,
+  SALES_SUCCESS: setSales,
+  SALES_FAILURE: requestFailure,
   CLEAR_MESSAGE: clearMessage,
   SET_MESSAGE: setMessage
 };

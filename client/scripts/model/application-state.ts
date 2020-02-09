@@ -1,4 +1,5 @@
 import { Message } from './message';
+import SalesRecord from '../../../common/sales-record';
 
 export type View = 'Search' | 'ReportSale';
 
@@ -20,4 +21,9 @@ export default interface ApplicationState {
    * The current view
    */
   view: View;
+
+  /**
+   * The current search results
+   */
+  sales: SalesRecord[];
 }

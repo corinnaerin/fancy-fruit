@@ -7,10 +7,10 @@ export default class AsyncSaga<S, T> {
   private readonly requestActionType: string;
   private readonly successActionType: string;
   private readonly failureActionType: string;
-  private readonly asyncFunc: (input?: S) => Promise<T>;
+  private readonly asyncFunc: (input: S) => Promise<T>;
 
   constructor(requestActionType: string, successActionType: string,
-      failureActionType: string, asyncFunc: (input?: S) => Promise<T>) {
+      failureActionType: string, asyncFunc: (input: S) => Promise<T>) {
     this.requestActionType = requestActionType;
     this.successActionType = successActionType;
     this.failureActionType = failureActionType;
@@ -60,7 +60,7 @@ export default class AsyncSaga<S, T> {
     yield takeEvery(this.requestActionType, this.handle.bind(this));
   }
 
-  public trigger(store: Redux.Store<ApplicationState>, input?: S): void {
+  public trigger(store: Redux.Store<ApplicationState>, input: S): void {
     store.dispatch(this.getRequestAction(input));
   }
 }
