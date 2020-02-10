@@ -5,6 +5,11 @@ import errorHandler from './middleware/error-handler';
 import Healthcheck from './routes/healthcheck';
 import Sales from './routes/sales';
 
+const notImplemented = (req: Request, res: Response) => {
+  res.status(501)
+      .send('API not yet implemented');
+};
+
 /**
  * My server!
  */
@@ -50,7 +55,12 @@ class Server {
     router.use(json());
 
     router.get('/healthcheck', Healthcheck.get);
-    router.get('/sales', Sales.get);
+    router.get('/sales', Sales.getAllSalesForDateRange);
+
+    // Just for the sake of showing how the API design would be
+    router.get('/sales/:fruit', notImplemented); // get the sales for the date range for a single fruit.
+    router.put('/sales/:fruit', notImplemented); // record the daily sales for a single fruit.  Request Body: FruitSales
+    router.post('/sales', notImplemented); // record daily sales for all fruits. Request Body: SalesRecord
 
     this.app.use(errorHandler);
 
