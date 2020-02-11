@@ -10,7 +10,7 @@ interface Props {
  * @param {Props} props
  * @return {Element}
  */
-const SalesTableRow: FunctionComponent<Props> = ({ sale }): ReactElement => {
+export const SalesTableRow: FunctionComponent<Props> = ({ sale }): ReactElement => {
   return (
     <tr>
       <td>{sale.longDate}</td>
