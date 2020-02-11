@@ -4,5 +4,5 @@
   "readme": "./README.md",
   "excludeExternals": true,
   "out": "build/public/docs",
-  "name": "TicTacToe Dungeon"
+  "name": "Fancy Fruit"
 }

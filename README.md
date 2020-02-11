@@ -1,3 +1,6 @@
+* See the app live at https://fancy-fruit.herokuapp.com/
+* API docs at https://fancy-fruit.herokuapp.com/docs
+
 # Getting started
 
 1. Install the dependencies and build the app:
@@ -12,7 +15,7 @@
   yarn start
   ```
   
-3. Access the app at `http://localhost:5000`.
+3. Access the app at `http://localhost:5000`. API docs available at `/docs`.
 
 # IntelliJ Setup
 

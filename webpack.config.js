@@ -57,7 +57,7 @@ const webpackConfig = {
       },
       {
         test: /\.css$/,
-        include: [ path.join(__dirname, 'client'), path.join(__dirname, 'node_modules/react-datepicker') ],
+        include: [ path.join(__dirname, 'client') ],
         use: getCssLoaders()
       },
       {
@@ -139,10 +139,7 @@ const webpackConfig = {
 if (!isDev) {
   module.exports = merge(webpackConfig, {
     plugins: [
-      new CleanWebpackPlugin([ 'public' ], {
-        root: path.join(__dirname, 'build'),
-        verbose: true
-      }),
+      new CleanWebpackPlugin(),
       new MiniCssExtractPlugin({
         filename: '[name].[chunkhash].min.css'
       })

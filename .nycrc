@@ -18,11 +18,6 @@
     "json-summary",
     "html"
   ],
-  "check-coverage": true,
-  "branches": 80,
-  "functions": 80,
-  "lines": 80,
-  "statements": 80,
   "sourceMap": true,
   "instrument": true,
   "report-dir": ".coverage",
